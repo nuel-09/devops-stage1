@@ -1,0 +1,18 @@
+[Unit]
+Description=HNG Stage 1 API (Node/Express)
+After=network.target
+
+[Service]
+Type=simple
+User=hngdevops
+Group=hngdevops
+WorkingDirectory=/opt/hng-stage1-api
+EnvironmentFile=/etc/hng-stage1-api.env
+ExecStart=/usr/bin/node /opt/hng-stage1-api/server.js
+Restart=on-failure
+RestartSec=5
+# Hardening (optional; adjust if your Node path differs)
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
